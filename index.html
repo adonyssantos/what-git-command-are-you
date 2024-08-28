@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Git Command Are You?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #quiz {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What Git Command Are You?</h1>
+        <div id="quiz">
+            <!-- Questions will be dynamically generated here -->
+        </div>
+        <button id="submit" onclick="showResult()">Submit</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        const quizData = [
+            {
+                question: "How do you handle conflict?",
+                a: "I avoid it by staying ahead.",
+                b: "I like to revert to a stable state.",
+                c: "I branch out and explore options.",
+                d: "I squash it and move forward.",
+                result: {
+                    a: "git pull",
+                    b: "git revert",
+                    c: "git branch",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "What's your approach to problem-solving?",
+                a: "I work incrementally, step by step.",
+                b: "I like to rewrite history to make things cleaner.",
+                c: "I collaborate with others to find a solution.",
+                d: "I just go back to the last known good state.",
+                result: {
+                    a: "git commit",
+                    b: "git rebase",
+                    c: "git merge",
+                    d: "git reset"
+                }
+            },
+            {
+                question: "How do you prefer to manage your work?",
+                a: "I like to commit regularly.",
+                b: "I prefer to stay on the main branch.",
+                c: "I experiment with new features.",
+                d: "I keep things organized by merging often.",
+                result: {
+                    a: "git commit",
+                    b: "git pull",
+                    c: "git branch",
+                    d: "git merge"
+                }
+            },
+            {
+                question: "How do you deal with mistakes?",
+                a: "I fix them directly in the next step.",
+                b: "I revert to a previous state.",
+                c: "I try different approaches to see what works.",
+                d: "I clean up the history to make it look like nothing happened.",
+                result: {
+                    a: "git commit",
+                    b: "git revert",
+                    c: "git branch",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "How do you approach teamwork?",
+                a: "I regularly sync with the team.",
+                b: "I experiment separately and bring in changes later.",
+                c: "I prefer to merge everyone's work.",
+                d: "I like to rebase to maintain a linear history.",
+                result: {
+                    a: "git pull",
+                    b: "git branch",
+                    c: "git merge",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "How do you feel about trying new things?",
+                a: "I stay in my comfort zone.",
+                b: "I try new things in a safe environment.",
+                c: "I jump right in and see what happens.",
+                d: "I test new things but clean up after myself.",
+                result: {
+                    a: "git pull",
+                    b: "git branch",
+                    c: "git commit",
+                    d: "git reset"
+                }
+            },
+            {
+                question: "What's your strategy when dealing with complex tasks?",
+                a: "I break it down and handle it step by step.",
+                b: "I handle it all in one go and clean up afterward.",
+                c: "I divide it into smaller parts and manage them separately.",
+                d: "I integrate small changes into the main workflow continuously.",
+                result: {
+                    a: "git commit",
+                    b: "git rebase",
+                    c: "git branch",
+                    d: "git merge"
+                }
+            },
+            {
+                question: "How do you handle pressure?",
+                a: "I stay calm and handle things one step at a time.",
+                b: "I retreat to a safe place and regroup.",
+                c: "I collaborate with others to share the load.",
+                d: "I work under pressure but make sure everything looks clean afterward.",
+                result: {
+                    a: "git commit",
+                    b: "git reset",
+                    c: "git merge",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "What do you do when you encounter an unexpected problem?",
+                a: "I backtrack to find the issue.",
+                b: "I explore different solutions.",
+                c: "I combine different ideas to solve it.",
+                d: "I rewrite the steps to correct the problem.",
+                result: {
+                    a: "git revert",
+                    b: "git branch",
+                    c: "git merge",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "How do you manage your progress?",
+                a: "I commit my work regularly.",
+                b: "I experiment and try different things.",
+                c: "I integrate changes from others frequently.",
+                d: "I make sure everything is clean and organized.",
+                result: {
+                    a: "git commit",
+                    b: "git branch",
+                    c: "git pull",
+                    d: "git rebase"
+                }
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function loadQuestion() {
+            const quizContainer = document.getElementById('quiz');
+            const questionData = quizData[currentQuestion];
+
+            let quizContent = `<h2>${questionData.question}</h2>`;
+            for (let option in questionData) {
+                if (option !== "question" && option !== "result") {
+                    quizContent += `<label><input type="radio" name="answer" value="${option}">${questionData[option]}</label><br>`;
+                }
+            }
+
+            quizContainer.innerHTML = quizContent;
+        }
+
+        function showResult() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                answers.push(quizData[currentQuestion].result[selectedAnswer.value]);
+                if (currentQuestion < quizData.length - 1) {
+                    currentQuestion++;
+                    loadQuestion();
+                } else {
+                    calculateResult();
+                }
+            } else {
+                alert("Please select an answer!");
+            }
+        }
+
+        function calculateResult() {
+            const commandCount = answers.reduce((acc, command) => {
+                acc[command] = (acc[command] || 0) + 1;
+                return acc;
+            }, {});
+
+            const mostCommonCommand = Object.keys(commandCount).reduce((a, b) => commandCount[a] > commandCount[b] ? a : b);
+
+            const resultDisplay = document.getElementById('result');
+            resultDisplay.textContent = `You are ${mostCommonCommand}`;
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
