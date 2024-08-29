@@ -67,133 +67,133 @@
     <script>
         const quizData = [
             {
-                question: "How do you handle conflict?",
-                a: "I avoid it by staying ahead.",
-                b: "I like to revert to a stable state.",
-                c: "I branch out and explore options.",
-                d: "I squash it and move forward.",
+                question: "How do you approach a new task?",
+                a: "I dive right in and figure it out as I go.",
+                b: "I like to explore all my options first.",
+                c: "I prefer to start small and build up.",
+                d: "I look at what others have done before starting.",
+                result: {
+                    a: "git commit",
+                    b: "git branch",
+                    c: "git add",
+                    d: "git pull"
+                }
+            },
+            {
+                question: "How do you react when faced with a challenge?",
+                a: "I stick to what I know works.",
+                b: "I look for a fresh perspective.",
+                c: "I take a step back and reassess.",
+                d: "I push through and make adjustments as needed.",
+                result: {
+                    a: "git reset",
+                    b: "git checkout",
+                    c: "git revert",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "What's your approach to working with others?",
+                a: "I like to keep everyone in sync.",
+                b: "I value brainstorming and exploring new ideas.",
+                c: "I prefer to work on my own and merge ideas later.",
+                d: "I focus on refining and improving existing ideas.",
                 result: {
                     a: "git pull",
-                    b: "git revert",
+                    b: "git branch",
+                    c: "git merge",
+                    d: "git rebase"
+                }
+            },
+            {
+                question: "How do you handle stress?",
+                a: "I stay calm and keep moving forward.",
+                b: "I take a break and come back refreshed.",
+                c: "I try a new approach to shake things up.",
+                d: "I focus on organizing and cleaning up.",
+                result: {
+                    a: "git commit",
+                    b: "git checkout",
                     c: "git branch",
                     d: "git rebase"
+                }
+            },
+            {
+                question: "How do you feel about change?",
+                a: "I embrace it and adapt quickly.",
+                b: "I prefer to test the waters before committing.",
+                c: "I stick with what works but make improvements.",
+                d: "I like to plan carefully before making a move.",
+                result: {
+                    a: "git rebase",
+                    b: "git branch",
+                    c: "git commit",
+                    d: "git checkout"
+                }
+            },
+            {
+                question: "How do you make decisions?",
+                a: "I trust my instincts.",
+                b: "I weigh all the options first.",
+                c: "I ask for input from others.",
+                d: "I base my decision on past experiences.",
+                result: {
+                    a: "git commit",
+                    b: "git branch",
+                    c: "git merge",
+                    d: "git revert"
                 }
             },
             {
                 question: "What's your approach to problem-solving?",
-                a: "I work incrementally, step by step.",
-                b: "I like to rewrite history to make things cleaner.",
-                c: "I collaborate with others to find a solution.",
-                d: "I just go back to the last known good state.",
+                a: "I break it down into smaller parts.",
+                b: "I try different solutions to see what works best.",
+                c: "I ask for help and work together to find a solution.",
+                d: "I rely on tried and true methods.",
                 result: {
-                    a: "git commit",
-                    b: "git rebase",
+                    a: "git add",
+                    b: "git branch",
                     c: "git merge",
                     d: "git reset"
                 }
             },
             {
-                question: "How do you prefer to manage your work?",
-                a: "I like to commit regularly.",
-                b: "I prefer to stay on the main branch.",
-                c: "I experiment with new features.",
-                d: "I keep things organized by merging often.",
+                question: "How do you handle mistakes?",
+                a: "I fix them as soon as possible.",
+                b: "I learn from them and move on.",
+                c: "I go back and correct them.",
+                d: "I use them as an opportunity to improve.",
                 result: {
                     a: "git commit",
                     b: "git pull",
-                    c: "git branch",
-                    d: "git merge"
+                    c: "git revert",
+                    d: "git rebase"
                 }
             },
             {
-                question: "How do you deal with mistakes?",
-                a: "I fix them directly in the next step.",
-                b: "I revert to a previous state.",
-                c: "I try different approaches to see what works.",
-                d: "I clean up the history to make it look like nothing happened.",
+                question: "What's your approach to learning something new?",
+                a: "I jump right in and start experimenting.",
+                b: "I gather as much information as I can first.",
+                c: "I start with the basics and build from there.",
+                d: "I look for examples to learn from.",
                 result: {
                     a: "git commit",
-                    b: "git revert",
-                    c: "git branch",
-                    d: "git rebase"
+                    b: "git checkout",
+                    c: "git add",
+                    d: "git pull"
                 }
             },
             {
-                question: "How do you approach teamwork?",
-                a: "I regularly sync with the team.",
-                b: "I experiment separately and bring in changes later.",
-                c: "I prefer to merge everyone's work.",
-                d: "I like to rebase to maintain a linear history.",
+                question: "How do you organize your work?",
+                a: "I keep everything neat and organized.",
+                b: "I focus on the big picture and adjust as needed.",
+                c: "I break things down into manageable tasks.",
+                d: "I like to experiment and refine my process.",
                 result: {
-                    a: "git pull",
-                    b: "git branch",
-                    c: "git merge",
-                    d: "git rebase"
-                }
-            },
-            {
-                question: "How do you feel about trying new things?",
-                a: "I stay in my comfort zone.",
-                b: "I try new things in a safe environment.",
-                c: "I jump right in and see what happens.",
-                d: "I test new things but clean up after myself.",
-                result: {
-                    a: "git pull",
-                    b: "git branch",
-                    c: "git commit",
-                    d: "git reset"
-                }
-            },
-            {
-                question: "What's your strategy when dealing with complex tasks?",
-                a: "I break it down and handle it step by step.",
-                b: "I handle it all in one go and clean up afterward.",
-                c: "I divide it into smaller parts and manage them separately.",
-                d: "I integrate small changes into the main workflow continuously.",
-                result: {
-                    a: "git commit",
-                    b: "git rebase",
-                    c: "git branch",
-                    d: "git merge"
-                }
-            },
-            {
-                question: "How do you handle pressure?",
-                a: "I stay calm and handle things one step at a time.",
-                b: "I retreat to a safe place and regroup.",
-                c: "I collaborate with others to share the load.",
-                d: "I work under pressure but make sure everything looks clean afterward.",
-                result: {
-                    a: "git commit",
-                    b: "git reset",
-                    c: "git merge",
-                    d: "git rebase"
-                }
-            },
-            {
-                question: "What do you do when you encounter an unexpected problem?",
-                a: "I backtrack to find the issue.",
-                b: "I explore different solutions.",
-                c: "I combine different ideas to solve it.",
-                d: "I rewrite the steps to correct the problem.",
-                result: {
-                    a: "git revert",
-                    b: "git branch",
-                    c: "git merge",
-                    d: "git rebase"
-                }
-            },
-            {
-                question: "How do you manage your progress?",
-                a: "I commit my work regularly.",
-                b: "I experiment and try different things.",
-                c: "I integrate changes from others frequently.",
-                d: "I make sure everything is clean and organized.",
-                result: {
-                    a: "git commit",
-                    b: "git branch",
-                    c: "git pull",
-                    d: "git rebase"
+                    a: "git rebase",
+                    b: "git merge",
+                    c: "git add",
+                    d: "git branch"
                 }
             }
         ];
